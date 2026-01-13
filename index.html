@@ -74,6 +74,22 @@
       gap: 14px;
     }
 
+    .menu-toggle{
+      display:none;
+      width:44px;
+      height:44px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+      flex: 0 0 auto;
+    }
+    .menu-toggle:hover{transform: translateY(-1px); background: rgba(255,255,255,0.085); border-color: rgba(255,255,255,0.16);}
+
     .brand{
       display:flex;
       align-items:center;
@@ -527,10 +543,17 @@
     }
 
     @media (max-width: 780px){
-      .header-inner{flex-direction: column; align-items: stretch;}
-      .brand{min-width: unset; justify-content:center;}
-      nav{justify-content:center;}
-      .header-cta{justify-content:center;}
+      /* Compact sticky header on mobile */
+      .menu-toggle{display:inline-flex;}
+      .header-inner{flex-direction: row; align-items: center; padding: 10px 0;}
+      nav{display:none;}
+      .header-cta{display:none;}
+
+      .brand{min-width: unset; justify-content:flex-start; flex: 1;}
+      .brand img{height: 36px;}
+      .brand .title strong{font-size: 16px;}
+      .brand .title span{display:none;} /* removes second line to save height */
+
       .hero{padding:48px 0 28px;}
       .hero h1{font-size:32px;}
       .hero-card{padding:18px;}
@@ -549,6 +572,55 @@
       .two-col{grid-template-columns: 1fr;}
       section{padding: 52px 0;}
     }
+  
+
+    /* Mobile menu (drawer) */
+    .mobile-menu{display:none;}
+    .mobile-menu.is-open{display:block;}
+    .mobile-menu__backdrop{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 220;
+    }
+    .mobile-menu__panel{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 230;
+      background: rgba(15,17,21,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.55);
+      padding: 14px 18px 18px;
+      max-height: 78vh;
+      overflow: auto;
+    }
+    .mobile-menu__head{display:flex; align-items:center; justify-content:space-between; gap: 12px;}
+    .mobile-menu__brand{display:flex; align-items:center; gap: 10px;}
+    .mobile-menu__brand img{height: 36px; width:auto; border-radius: 10px;}
+    .mobile-menu__title{font-family:'Playfair Display', serif; font-size: 18px; line-height:1.1;}
+    .mobile-menu__sub{font-size: 12px; color: var(--muted2); margin-top: 2px;}
+
+    .mobile-nav{display:grid; gap: 10px; margin-top: 14px;}
+    .mobile-nav a{
+      text-decoration:none;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .mobile-menu__cta{display:flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;}
+    .mobile-menu__hint{margin-top: 14px; color: rgba(255,255,255,0.68); font-size: 12px; font-style: italic;}
+
+    @media (min-width: 781px){
+      .mobile-menu{display:none !important;}
+    }
+
   </style>
 </head>
 <body>
@@ -556,6 +628,9 @@
 <header>
   <div class="container">
     <div class="header-inner">
+      <button class="menu-toggle" id="btnMenu" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
       <div class="brand">
         <!-- Логотип: сейчас используется Unknown.png из твоей структуры.
              Если будет отдельный файл логотипа — просто переименуй и замени src. -->
@@ -581,6 +656,42 @@
       </div>
     </div>
   </div>
+
+
+<!-- Mobile menu / drawer -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu__panel">
+    <div class="mobile-menu__head">
+      <div class="mobile-menu__brand">
+        <img src="Unknown.png" alt="Almaty Church" />
+        <div>
+          <div class="mobile-menu__title">Almaty Church</div>
+          <div class="mobile-menu__sub">Церковь христиан веры евангельской · Алматы</div>
+        </div>
+      </div>
+      <button class="menu-toggle" id="btnMenuClose" type="button" aria-label="Закрыть меню">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <nav class="mobile-nav" aria-label="Навигация (мобильная)">
+      <a href="#about" data-close-menu>О церкви</a>
+      <a href="#services" data-close-menu>Богослужения</a>
+      <a href="#sermons" data-close-menu>Проповеди и молитвы</a>
+      <a href="#prayer" data-close-menu>Молитвенная просьба</a>
+      <a href="#donate" data-close-menu>Пожертвования</a>
+      <a href="#contact" data-close-menu>Контакты</a>
+    </nav>
+
+    <div class="mobile-menu__cta">
+      <a class="btn primary" href="#services" data-close-menu><i class="fa-solid fa-calendar-days"></i> Расписание</a>
+      <button class="btn" id="btnOnlineMobile" type="button"><i class="fa-solid fa-circle-play"></i> Смотреть онлайн</button>
+    </div>
+
+    <div class="mobile-menu__hint">«Иисус Христос вчера и сегодня и во веки Тот же» (Евреям 13:8)</div>
+  </div>
+  <div class="mobile-menu__backdrop" id="btnMenuBackdrop" aria-hidden="true"></div>
+</div>
 </header>
 
 <main>
@@ -1090,6 +1201,44 @@
   // ОБРАБОТЧИКИ
   // =====================
   function bind(){
+    // Mobile menu
+    const btnMenu = document.getElementById('btnMenu');
+    const btnMenuClose = document.getElementById('btnMenuClose');
+    const btnMenuBackdrop = document.getElementById('btnMenuBackdrop');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    const openMenu = () => {
+      mobileMenu.classList.add('is-open');
+      mobileMenu.setAttribute('aria-hidden','false');
+      if(btnMenu) btnMenu.setAttribute('aria-expanded','true');
+      document.body.style.overflow = 'hidden';
+    };
+    const closeMenu = () => {
+      mobileMenu.classList.remove('is-open');
+      mobileMenu.setAttribute('aria-hidden','true');
+      if(btnMenu) btnMenu.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    };
+
+    if(btnMenu) btnMenu.addEventListener('click', openMenu);
+    if(btnMenuClose) btnMenuClose.addEventListener('click', closeMenu);
+    if(btnMenuBackdrop) btnMenuBackdrop.addEventListener('click', closeMenu);
+
+    // Close menu on nav click
+    document.querySelectorAll('[data-close-menu]').forEach(a => a.addEventListener('click', closeMenu));
+
+    // Online button in mobile drawer
+    const btnOnlineMobile = document.getElementById('btnOnlineMobile');
+    if(btnOnlineMobile) btnOnlineMobile.addEventListener('click', () => {
+      closeMenu();
+      openUrl(CONFIG.onlineStream || CONFIG.youtubeChannelOrStream);
+    });
+
+    // ESC to close
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape' && mobileMenu.classList.contains('is-open')) closeMenu();
+    });
+
     // Онлайн
     $('#btnOnline').addEventListener('click', () => {
       openUrl(CONFIG.onlineStream || CONFIG.youtubeChannelOrStream);
