@@ -574,54 +574,62 @@
     }
   
 
-    /* Mobile menu (drawer) */
-    .mobile-menu{display:none;}
-    .mobile-menu.is-open{display:block;}
-    .mobile-menu__backdrop{
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      z-index: 220;
-    }
-    }
-    .mobile-menu__panel{
-      position: fixed;
-      top: 64px; /* ниже хедера */
-      left: 12px;
-      right: 12px;
-      z-index: 230;
-      background: rgba(15,17,21,0.96);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.10);
-      box-shadow: 0 18px 60px rgba(0,0,0,0.55);
-      padding: 14px 14px 16px;
-      border-radius: 20px;
-      max-height: 70vh;
-      overflow: auto;
-    }
-    }
-    .mobile-menu__head{display:flex; align-items:center; justify-content:space-between; gap: 12px;}
-    .mobile-menu__brand{display:flex; align-items:center; gap: 10px;}
-    .mobile-menu__brand img{height: 36px; width:auto; border-radius: 10px;}
-    .mobile-menu__title{font-family:'Playfair Display', serif; font-size: 18px; line-height:1.1;}
-    .mobile-menu__sub{font-size: 12px; color: var(--muted2); margin-top: 2px;}
+    /* =====================
+   Mobile menu (FIXED & NORMAL)
+   ===================== */
+.mobile-menu{
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: none;
+}
 
-    .mobile-nav{display:grid; gap: 10px; margin-top: 14px;}
-    .mobile-nav a{
-      text-decoration:none;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.05);
-      color: var(--muted);
-      font-size: 15px;
-    }
+.mobile-menu.is-open{display:block;}
 
-    .mobile-menu__cta{display:flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;}
-    .mobile-menu__hint{margin-top: 14px; color: rgba(255,255,255,0.68); font-size: 12px; font-style: italic;}
+.mobile-menu__backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
 
-    @media (min-width: 781px){
-      .mobile-menu{display:none !important;}
+.mobile-menu__panel{
+  position: absolute;
+  top: 72px; /* ниже компактного header */
+  left: 12px;
+  right: 12px;
+  background: rgba(15,17,21,0.97);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.55);
+  border-radius: 18px;
+  padding: 14px;
+  max-height: calc(100vh - 96px);
+  overflow-y: auto;
+}
+
+.mobile-menu__head{display:flex; align-items:center; justify-content:space-between; gap:12px;}
+.mobile-menu__brand{display:flex; align-items:center; gap:10px;}
+.mobile-menu__brand img{height:36px; border-radius:10px;}
+.mobile-menu__title{font-family:'Playfair Display', serif; font-size:18px; line-height:1.1;}
+.mobile-menu__sub{font-size:12px; color: var(--muted2);}
+
+.mobile-nav{display:grid; gap:10px; margin-top:14px;}
+.mobile-nav a{
+  text-decoration:none;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+  color: var(--muted);
+  font-size:15px;
+}
+
+.mobile-menu__cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
+.mobile-menu__hint{margin-top:14px; font-size:12px; color: rgba(255,255,255,0.68); font-style:italic;}
+
+@media (min-width: 781px){
+  .mobile-menu{display:none !important;}
+}
     }
 
   </style>
