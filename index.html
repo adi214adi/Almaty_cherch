@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Almaty Church — церковь христиан веры евангельской в Алматы. Богослужения каждое воскресенье: 11:00 (рус), 14:00 (каз)." />
+  <title>Almaty Church — Церковь Алматы</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-dark: #0f1115;
+      --bg-2: #131826;
+      --card: rgba(255,255,255,0.06);
+      --card-2: rgba(255,255,255,0.08);
+      --stroke: rgba(255,255,255,0.10);
+      --accent: #c9a45c;
+      --accent-2: #e5c47a;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.72);
+      --muted2: rgba(255,255,255,0.58);
+      --shadow: 0 12px 40px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --radius2: 26px;
+      --container: 1180px;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+
+    body{
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(201,164,92,0.18), transparent 55%),
+        radial-gradient(900px 540px at 80% 10%, rgba(120,170,255,0.15), transparent 55%),
+        radial-gradient(1000px 700px at 50% 110%, rgba(201,164,92,0.10), transparent 55%),
+        linear-gradient(180deg, var(--bg-2), var(--bg-dark));
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a{color:inherit;}
+
+    .container{
+      width:100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    /* Header */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(15,17,21,0.72);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 240px;
+    }
+
+    .brand img{
+      height: 44px;
+      width: auto;
+      border-radius: 10px;
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,0.45));
+    }
+
+    .brand .title{
+      display:flex;
+      flex-direction:column;
+      line-height:1.15;
+    }
+
+    .brand .title strong{
+      font-family:'Playfair Display', serif;
+      font-size: 18px;
+      letter-spacing: 0.2px;
+    }
+
+    .brand .title span{
+      font-size: 12px;
+      color: var(--muted2);
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+
+    nav a{
+      text-decoration:none;
+      font-size: 14px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: background .25s ease, color .25s ease;
+      white-space: nowrap;
+    }
+
+    nav a:hover{background: rgba(255,255,255,0.06); color: var(--accent-2);}
+
+    .header-cta{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      text-decoration:none;
+      font-size: 14px;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+      cursor:pointer;
+    }
+
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,0.085); border-color: rgba(255,255,255,0.16);}
+
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(201,164,92,0.95), rgba(229,196,122,0.92));
+      color: #1a1410;
+      border-color: rgba(255,255,255,0.14);
+      font-weight: 600;
+    }
+
+    .btn.primary:hover{background: linear-gradient(135deg, rgba(229,196,122,0.98), rgba(201,164,92,0.92));}
+
+    .btn.ghost{background: transparent;}
+
+    .icon{
+      width: 18px;
+      height: 18px;
+      display:inline-block;
+    }
+
+    /* Hero */
+    .hero{
+      position: relative;
+      padding: 78px 0 46px;
+      overflow:hidden;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .hero-card{
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding: 34px;
+      position: relative;
+      overflow:hidden;
+    }
+
+    .hero-card:before{
+      content:"";
+      position:absolute;
+      inset:-80px;
+      background:
+        radial-gradient(340px 240px at 18% 20%, rgba(201,164,92,0.22), transparent 60%),
+        radial-gradient(340px 240px at 80% 10%, rgba(120,170,255,0.14), transparent 60%),
+        radial-gradient(420px 320px at 70% 88%, rgba(201,164,92,0.12), transparent 60%);
+      filter: blur(2px);
+      pointer-events:none;
+    }
+
+    .hero h1{
+      font-family:'Playfair Display', serif;
+      font-size: 46px;
+      line-height:1.12;
+      letter-spacing: 0.2px;
+      margin-bottom: 16px;
+      position:relative;
+    }
+
+    .hero p{
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 680px;
+      position:relative;
+    }
+
+    .badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin: 18px 0 18px;
+      position:relative;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .badge strong{color: var(--accent-2); font-weight: 600;}
+
+    .hero-actions{
+      margin-top: 22px;
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      position:relative;
+    }
+
+    .verse{
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      font-style: italic;
+      color: var(--accent-2);
+      font-size: 15px;
+      position:relative;
+    }
+
+    .hero-side{
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+    }
+
+    .panel{
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .panel h3{
+      font-family:'Playfair Display', serif;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .panel p{color: var(--muted); font-size: 14px;}
+
+    .schedule{
+      display:grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .schedule .row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .schedule .row span{color: var(--muted); font-size: 14px;}
+    .schedule .row strong{color: var(--text); font-weight: 600; font-size: 14px;}
+
+    .image-card{
+      border-radius: var(--radius2);
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow);
+      position:relative;
+      min-height: 240px;
+      background:
+        linear-gradient(180deg, rgba(15,17,21,0.25), rgba(15,17,21,0.85)),
+        radial-gradient(520px 260px at 50% 20%, rgba(201,164,92,0.18), transparent 70%);
+    }
+
+    .image-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      opacity: 0.9;
+      filter: saturate(1.02) contrast(1.05);
+    }
+
+    .image-overlay{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:flex-end;
+      padding: 16px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.70));
+    }
+
+    .image-overlay .caption{
+      font-size: 13px;
+      color: rgba(255,255,255,0.76);
+    }
+
+    /* Sections */
+    section{padding: 64px 0;}
+
+    .section-title{
+      text-align:center;
+      margin-bottom: 26px;
+    }
+
+    .section-title h2{
+      font-family:'Playfair Display', serif;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p{
+      color: var(--muted);
+      max-width: 860px;
+      margin: 0 auto;
+      font-size: 16px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card{
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      border-radius: var(--radius2);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .card .card-head{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card .card-head i{
+      color: var(--accent-2);
+      font-size: 18px;
+    }
+
+    .card h3{
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .card p{color: var(--muted); font-size: 14px;}
+
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .list{
+      margin-top: 10px;
+      display:grid;
+      gap: 10px;
+    }
+
+    .list .item{
+      display:flex;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(0,0,0,0.14);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .list .item i{color: var(--accent-2); margin-top: 2px;}
+    .list .item div{flex:1;}
+    .list .item strong{display:block; font-weight: 600; margin-bottom: 2px;}
+    .list .item span{color: var(--muted); font-size: 14px;}
+
+    /* Forms */
+    form{
+      display:grid;
+      gap: 10px;
+    }
+
+    .field{
+      display:grid;
+      gap: 6px;
+    }
+
+    label{font-size: 13px; color: var(--muted);}
+
+    input, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.22);
+      color: var(--text);
+      outline:none;
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color .2s ease, background .2s ease;
+    }
+
+    input:focus, textarea:focus{border-color: rgba(229,196,122,0.55); background: rgba(0,0,0,0.28);}
+    textarea{min-height: 120px; resize: vertical;}
+
+    .form-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hint{
+      font-size: 12px;
+      color: var(--muted2);
+      margin-top: 6px;
+    }
+
+    /* Socials */
+    .socials{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .socials a{
+      width: 44px;
+      height: 44px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--muted);
+      text-decoration:none;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+
+    .socials a:hover{transform: translateY(-1px); background: rgba(255,255,255,0.085); color: var(--accent-2);}
+
+    /* Footer */
+    footer{
+      padding: 34px 0 44px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.18);
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .footer-grid p{color: var(--muted); font-size: 14px;}
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      background: rgba(15,17,21,0.88);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      font-size: 13px;
+      opacity: 0;
+      pointer-events:none;
+      transition: opacity .25s ease, transform .25s ease;
+      z-index: 999;
+    }
+
+    .toast.show{opacity: 1; transform: translateX(-50%) translateY(-4px);}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns: 1fr;}
+      .footer-grid{grid-template-columns: 1fr;}
+    }
+
+    @media (max-width: 780px){
+      .header-inner{flex-direction: column; align-items: stretch;}
+      .brand{min-width: unset; justify-content:center;}
+      nav{justify-content:center;}
+      .header-cta{justify-content:center;}
+      .hero h1{font-size: 38px;}
+      .grid-3{grid-template-columns: 1fr;}
+      .two-col{grid-template-columns: 1fr;}
+      section{padding: 52px 0;}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <div class="brand">
+        <!-- Логотип: сейчас используется Unknown.png из твоей структуры.
+             Если будет отдельный файл логотипа — просто переименуй и замени src. -->
+        <img src="Unknown.png" alt="Almaty Church" />
+        <div class="title">
+          <strong>Almaty Church</strong>
+          <span>Церковь христиан веры евангельской · Алматы</span>
+        </div>
+      </div>
+
+      <nav aria-label="Навигация">
+        <a href="#about">О церкви</a>
+        <a href="#services">Богослужения</a>
+        <a href="#sermons">Проповеди и молитвы</a>
+        <a href="#prayer">Молитвенная просьба</a>
+        <a href="#donate">Пожертвования</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+
+      <div class="header-cta">
+        <a class="btn primary" href="#services"><i class="fa-solid fa-calendar-days"></i> Расписание</a>
+        <button class="btn" id="btnOnline" type="button"><i class="fa-solid fa-circle-play"></i> Смотреть онлайн</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div class="hero-card">
+          <h1>Церковь Алматы — Almaty Church</h1>
+          <p>
+            Добро пожаловать на богослужения каждое воскресенье:
+            <strong>11:00</strong> — на русском языке; <strong>14:00</strong> — на казахском языке.
+            Проповеди — христианские, пожертвования — добровольные, молитвы — бесплатны.
+          </p>
+
+          <div class="badges" aria-label="Ключевая информация">
+            <div class="badge"><i class="fa-solid fa-location-dot"></i> <strong>Алматы</strong> · ул. Рихарда Зорге 14А</div>
+            <div class="badge"><i class="fa-solid fa-door-open"></i> Вход свободный</div>
+            <div class="badge"><i class="fa-solid fa-hand-holding-heart"></i> Пожертвования добровольные</div>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#prayer"><i class="fa-solid fa-hands-praying"></i> Оставить молитвенную просьбу</a>
+            <a class="btn" href="#contact"><i class="fa-solid fa-phone"></i> Связаться с нами</a>
+            <button class="btn ghost" id="btnCopyAddress" type="button"><i class="fa-regular fa-copy"></i> Скопировать адрес</button>
+          </div>
+
+          <div class="verse">«Ибо где двое или трое собраны во имя Моё, там Я посреди них» (Матфея 18:20)</div>
+        </div>
+
+        <div class="hero-side">
+          <div class="panel">
+            <h3>Богослужения</h3>
+            <p>Каждое воскресенье. Присоединяйтесь лично или онлайн.</p>
+            <div class="schedule" aria-label="Расписание богослужений">
+              <div class="row"><span>Воскресенье</span><strong>11:00 · Русский</strong></div>
+              <div class="row"><span>Воскресенье</span><strong>14:00 · Казахский</strong></div>
+            </div>
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn primary" href="#services"><i class="fa-solid fa-calendar-check"></i> Подробнее</a>
+              <button class="btn" id="btnMaps" type="button"><i class="fa-solid fa-map"></i> Открыть карту</button>
+            </div>
+          </div>
+
+          <div class="image-card" aria-label="Изображение">
+            <!-- ВАЖНО:
+                 Чтобы добавить «картинки христианские» без скачивания из интернета в коде,
+                 просто положи файл рядом с index.html и назови его, например:
+                   - jesus.jpg
+                   - cross.jpg
+                 и замени src ниже.
+
+                 Сейчас это безопасный placeholder (можно заменить на твою картинку).
+            -->
+            <img src="Unknown.png" alt="" />
+            <div class="image-overlay">
+              <div class="caption">Добавь сюда изображение (например, jesus.jpg) — и блок станет сильным визуальным акцентом.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>О церкви</h2>
+        <p>
+          Мы — церковь христиан веры евангельской в Алматы. Наша цель — чтобы люди встречались с Иисусом Христом,
+          росли в вере и получали поддержку в молитве и общении.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-head"><i class="fa-solid fa-book-bible"></i><h3>Основание — Библия</h3></div>
+          <p>Мы строим жизнь и служение на Слове Божьем и Евангелии Иисуса Христа.</p>
+        </div>
+        <div class="card">
+          <div class="card-head"><i class="fa-solid fa-people-group"></i><h3>Община и поддержка</h3></div>
+          <p>Здесь можно найти общение, заботу, молитвенную поддержку и наставничество.</p>
+        </div>
+        <div class="card">
+          <div class="card-head"><i class="fa-solid fa-handshake-angle"></i><h3>Служение и помощь</h3></div>
+          <p>Мы служим людям: молитвой, добрыми делами и участием в жизни друг друга.</p>
+        </div>
+      </div>
+
+      <div class="verse" style="margin-top:18px; text-align:center;">«Иисус Христос вчера и сегодня и во веки Тот же» (Евреям 13:8)</div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Когда проходят богослужения</h2>
+        <p>Планируйте визит. Мы будем рады видеть вас. Вход свободный.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head"><i class="fa-solid fa-calendar-days"></i><h3>Расписание</h3></div>
+          <div class="list">
+            <div class="item"><i class="fa-solid fa-clock"></i><div><strong>Воскресенье · 11:00</strong><span>Богослужение на русском языке</span></div></div>
+            <div class="item"><i class="fa-solid fa-clock"></i><div><strong>Воскресенье · 14:00</strong><span>Богослужение на казахском языке</span></div></div>
+            <div class="item"><i class="fa-solid fa-location-dot"></i><div><strong>Адрес</strong><span>г. Алматы, ул. Рихарда Зорге 14А</span></div></div>
+          </div>
+          <div class="form-actions" style="margin-top:12px;">
+            <button class="btn primary" id="btnReminder" type="button"><i class="fa-regular fa-bell"></i> Напомнить мне</button>
+            <button class="btn" id="btnShare" type="button"><i class="fa-solid fa-share-nodes"></i> Поделиться</button>
+          </div>
+          <div class="hint">Кнопки работают: «Напомнить» создаст событие в календаре (файл .ics), «Поделиться» — скопирует текст.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><i class="fa-solid fa-circle-play"></i><h3>Онлайн</h3></div>
+          <p>
+            Не можете прийти? Смотрите онлайн. Вставьте ниже ссылку на трансляцию (YouTube / другой сервис).
+          </p>
+          <div class="list">
+            <div class="item"><i class="fa-brands fa-youtube"></i><div><strong>YouTube</strong><span id="ytLinkText">Ссылка не указана — добавьте в коде</span></div></div>
+            <div class="item"><i class="fa-solid fa-link"></i><div><strong>Онлайн-трансляция</strong><span id="onlineLinkText">Ссылка не указана — добавьте в коде</span></div></div>
+          </div>
+          <div class="form-actions" style="margin-top:12px;">
+            <button class="btn primary" id="btnOpenYouTube" type="button"><i class="fa-brands fa-youtube"></i> Открыть YouTube</button>
+            <button class="btn" id="btnOpenOnline" type="button"><i class="fa-solid fa-arrow-up-right-from-square"></i> Открыть трансляцию</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sermons">
+    <div class="container">
+      <div class="section-title">
+        <h2>Проповеди и молитвы</h2>
+        <p>Духовные послания, молитвенная поддержка и служение. Если вам нужна молитва — оставьте просьбу, мы будем молиться.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-head"><i class="fa-solid fa-microphone"></i><h3>Проповеди</h3></div>
+          <p>Христианские проповеди на основе Библии. Ссылка на архив/плейлист — ниже.</p>
+          <div class="form-actions" style="margin-top:12px;">
+            <button class="btn" id="btnSermons" type="button"><i class="fa-solid fa-list"></i> Открыть архив</button>
+          </div>
+          <div class="hint">Укажи ссылку на плейлист — и кнопка станет рабочей.</div>
+        </div>
+        <div class="card">
+          <div class="card-head"><i class="fa-solid fa-hands-praying"></i><h3>Молитва</h3></div>
+          <p>Мы молимся за людей, семьи, здоровье, нужды и решения. Молитвы — бесплатно.</p>
+          <div class="form-actions" style="margin-top:12px;">
+            <a class="btn primary" href="#prayer"><i class="fa-solid fa-pen"></i> Оставить просьбу</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><i class="fa-solid fa-heart"></i><h3>Забота</h3></div>
+          <p>Если вы впервые — подскажем, как добраться, где парковка, и ответим на вопросы. Напишите нам.</p>
+          <div class="form-actions" style="margin-top:12px;">
+            <a class="btn" href="#contact"><i class="fa-solid fa-message"></i> Написать</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prayer">
+    <div class="container">
+      <div class="section-title">
+        <h2>Оставить молитвенную просьбу</h2>
+        <p>Заполните форму — и мы будем молиться. Можно указать имя или отправить анонимно.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head"><i class="fa-solid fa-hands-praying"></i><h3>Форма просьбы</h3></div>
+
+          <!--
+            ВАЖНО (чтобы работало «по-настоящему»):
+            1) Самый простой вариант без серверов — отправка на email через mailto (ниже),
+               но тогда откроется почтовая программа пользователя.
+            2) Если хочешь, чтобы форма отправляла без почтовой программы — подключим Formspree / Getform / Google Apps Script.
+               Скажи, и я вставлю готовую интеграцию.
+          -->
+          <form id="prayerForm">
+            <div class="field">
+              <label for="name">Имя (необязательно)</label>
+              <input id="name" name="name" type="text" placeholder="Например: Мария" />
+            </div>
+            <div class="field">
+              <label for="phone">Телефон / мессенджер (необязательно)</label>
+              <input id="phone" name="phone" type="text" placeholder="WhatsApp/Telegram: +7..." />
+            </div>
+            <div class="field">
+              <label for="request">Молитвенная просьба *</label>
+              <textarea id="request" name="request" placeholder="Напишите, за что помолиться..." required></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn primary" type="submit"><i class="fa-solid fa-paper-plane"></i> Отправить</button>
+              <button class="btn" id="btnPrayerEmail" type="button"><i class="fa-regular fa-envelope"></i> Отправить на email</button>
+            </div>
+            <div class="hint">Если у вас нет почты/мессенджера — просто отправьте анонимно. Мы всё равно будем молиться.</div>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><i class="fa-solid fa-shield-heart"></i><h3>Конфиденциальность</h3></div>
+          <p>
+            Мы бережно относимся к личной информации. Вы можете не указывать имя и контакты.
+            Просьбы используются только для молитвенного служения.
+          </p>
+          <div class="list">
+            <div class="item"><i class="fa-solid fa-lock"></i><div><strong>Анонимно — можно</strong><span>Имя и телефон необязательны</span></div></div>
+            <div class="item"><i class="fa-solid fa-hand-holding-heart"></i><div><strong>Молитва — бесплатно</strong><span>Без условий и «платных услуг»</span></div></div>
+            <div class="item"><i class="fa-solid fa-people-group"></i><div><strong>Поддержка</strong><span>При желании мы свяжемся и поддержим</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="donate">
+    <div class="container">
+      <div class="section-title">
+        <h2>Добровольные пожертвования</h2>
+        <p>Пожертвования — добровольные. Если вы хотите поддержать служение, используйте удобный способ.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head"><i class="fa-solid fa-hand-holding-dollar"></i><h3>Как пожертвовать</h3></div>
+          <p>
+            Ниже — placeholders. Вставьте реквизиты/ссылку на Kaspi/банковский перевод/QR.
+            Скажи мне реквизиты — и я оформлю красиво (без ошибок, с кнопками «скопировать»).
+          </p>
+          <div class="list">
+            <div class="item"><i class="fa-solid fa-qrcode"></i><div><strong>QR / ссылка</strong><span id="donateLinkText">Не указано</span></div></div>
+            <div class="item"><i class="fa-solid fa-building-columns"></i><div><strong>Банк / реквизиты</strong><span id="donateBankText">Не указано</span></div></div>
+          </div>
+          <div class="form-actions" style="margin-top:12px;">
+            <button class="btn primary" id="btnDonate" type="button"><i class="fa-solid fa-arrow-up-right-from-square"></i> Перейти к пожертвованию</button>
+            <button class="btn" id="btnCopyDonate" type="button"><i class="fa-regular fa-copy"></i> Скопировать реквизиты</button>
+          </div>
+          <div class="hint">Пожертвование не является оплатой услуг. Это поддержка служения по желанию.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><i class="fa-solid fa-seedling"></i><h3>На что идут средства</h3></div>
+          <p>Примеры (можно заменить на ваши реальные направления):</p>
+          <div class="list">
+            <div class="item"><i class="fa-solid fa-house-chimney"></i><div><strong>Аренда и содержание помещения</strong><span>Свет, звук, порядок, безопасность</span></div></div>
+            <div class="item"><i class="fa-solid fa-bullhorn"></i><div><strong>Служение и миссия</strong><span>Мероприятия, помощь, проекты</span></div></div>
+            <div class="item"><i class="fa-solid fa-video"></i><div><strong>Онлайн-служение</strong><span>Трансляции, техника, монтаж</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Связаться с нами</h2>
+        <p>Напишите в мессенджер, позвоните или приходите лично. Мы ответим и поможем.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head"><i class="fa-solid fa-address-card"></i><h3>Контакты</h3></div>
+          <div class="list">
+            <div class="item"><i class="fa-solid fa-location-dot"></i><div><strong>Адрес</strong><span id="addressText">г. Алматы, ул. Рихарда Зорге 14А</span></div></div>
+            <div class="item"><i class="fa-solid fa-phone"></i><div><strong>Телефон</strong><span id="phoneText">+7 (___) ___-__-__ (вставьте номер)</span></div></div>
+            <div class="item"><i class="fa-solid fa-envelope"></i><div><strong>Email</strong><span id="emailText">hello@almaty.church (вставьте реальный)</span></div></div>
+          </div>
+          <div class="form-actions" style="margin-top:12px;">
+            <button class="btn primary" id="btnCall" type="button"><i class="fa-solid fa-phone"></i> Позвонить</button>
+            <button class="btn" id="btnMessage" type="button"><i class="fa-solid fa-paper-plane"></i> Написать</button>
+            <button class="btn" id="btnCopyContact" type="button"><i class="fa-regular fa-copy"></i> Скопировать</button>
+          </div>
+
+          <div class="socials" aria-label="Социальные сети">
+            <!-- Вставь реальные ссылки вместо # -->
+            <a id="igLink" href="#" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a id="ytLink" href="#" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a id="tgLink" href="#" target="_blank" rel="noopener" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+          </div>
+          <div class="hint">Скажи ссылки на Instagram/YouTube/Telegram — я вставлю их корректно.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><i class="fa-solid fa-map-location-dot"></i><h3>Как добраться</h3></div>
+          <p>
+            Нажмите «Открыть карту» — откроется маршрут.
+            Если нужно — добавим встроенную карту (Google/Яндекс/2GIS) одним блоком.
+          </p>
+          <div class="form-actions" style="margin-top:12px;">
+            <button class="btn primary" id="btnMaps2" type="button"><i class="fa-solid fa-map"></i> Открыть карту</button>
+            <button class="btn" id="btnCopyAddress2" type="button"><i class="fa-regular fa-copy"></i> Скопировать адрес</button>
+          </div>
+          <div class="hint">Адрес уже в кнопках и копируется в буфер обмена.</div>
+        </div>
+      </div>
+
+      <div class="verse" style="margin-top:18px; text-align:center;">«Ибо где двое или трое собраны во имя Моё, там Я посреди них» (Матфея 18:20)</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p><strong>Almaty Church</strong> · Церковь христиан веры евангельской · Алматы</p>
+        <p style="margin-top:10px;">© <span id="year"></span> · Все права защищены</p>
+      </div>
+      <div>
+        <p class="verse" style="margin-top:0; border-top:none; padding-top:0;">«Иисус Христос вчера и сегодня и во веки Тот же» (Евреям 13:8)</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  // =====================
+  // НАСТРОЙКИ (заполни реальными данными)
+  // =====================
+  const CONFIG = {
+    churchName: 'Almaty Church',
+    address: 'г. Алматы, ул. Рихарда Зорге 14А',
+    mapsQuery: 'Алматы ул. Рихарда Зорге 14А',
+    phone: '', // например: +77001234567
+    email: '', // например: info@almaty.church
+
+    // Соцсети
+    instagram: '',
+    youtube: '',
+    telegram: '',
+
+    // Онлайн
+    onlineStream: '', // например ссылка на трансляцию
+    youtubeChannelOrStream: '', // например ссылка на YouTube-канал/стрим
+    sermonsPlaylist: '', // например ссылка на плейлист проповедей
+
+    // Пожертвования
+    donateLink: '', // например ссылка/страница
+    donateBankText: '' // например реквизиты в тексте
+  };
+
+  // =====================
+  // УТИЛИТЫ
+  // =====================
+  const $ = (sel) => document.querySelector(sel);
+  const toast = $('#toast');
+
+  function showToast(message){
+    toast.textContent = message;
+    toast.classList.add('show');
+    window.clearTimeout(showToast._t);
+    showToast._t = window.setTimeout(() => toast.classList.remove('show'), 2400);
+  }
+
+  async function copyToClipboard(text){
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast('Скопировано');
+      return true;
+    } catch(e){
+      // fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('Скопировано');
+      return true;
+    }
+  }
+
+  function openUrl(url){
+    if(!url){
+      showToast('Ссылка не указана');
+      return;
+    }
+    window.open(url, '_blank', 'noopener');
+  }
+
+  function buildMapsUrl(query){
+    const q = encodeURIComponent(query || CONFIG.mapsQuery || CONFIG.address);
+    // Универсально: Google Maps
+    return `https://www.google.com/maps/search/?api=1&query=${q}`;
+  }
+
+  function downloadFile(filename, content, mime='text/plain'){
+    const blob = new Blob([content], {type: mime});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function makeIcsEvent({title, startLocalISO, durationMinutes=90, description='', location=''}){
+    // startLocalISO: 'YYYY-MM-DDTHH:mm'
+    const start = new Date(startLocalISO);
+    const end = new Date(start.getTime() + durationMinutes * 60 * 1000);
+
+    function toICSDate(d){
+      // Convert to UTC format: YYYYMMDDTHHMMSSZ
+      const pad = (n) => String(n).padStart(2,'0');
+      const yyyy = d.getUTCFullYear();
+      const mm = pad(d.getUTCMonth()+1);
+      const dd = pad(d.getUTCDate());
+      const hh = pad(d.getUTCHours());
+      const mi = pad(d.getUTCMinutes());
+      const ss = pad(d.getUTCSeconds());
+      return `${yyyy}${mm}${dd}T${hh}${mi}${ss}Z`;
+    }
+
+    const uid = `${Date.now()}@almaty.church`;
+    const dtstamp = toICSDate(new Date());
+    const dtstart = toICSDate(start);
+    const dtend = toICSDate(end);
+
+    const esc = (s) => String(s || '')
+      .replace(/\/g, '\\')
+      .replace(/
+/g, '\n')
+      .replace(/,/g, '\,')
+      .replace(/;/g, '\;');
+
+    return [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Almaty Church//Site//RU',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      `UID:${uid}`,
+      `DTSTAMP:${dtstamp}`,
+      `DTSTART:${dtstart}`,
+      `DTEND:${dtend}`,
+      `SUMMARY:${esc(title)}`,
+      `DESCRIPTION:${esc(description)}`,
+      `LOCATION:${esc(location)}`,
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('
+');
+  }
+
+  function nextSundayAt(hours, minutes){
+    const now = new Date();
+    const d = new Date(now);
+    const day = d.getDay(); // 0=Sun
+    const delta = (7 - day) % 7;
+    d.setDate(d.getDate() + delta);
+    d.setHours(hours, minutes, 0, 0);
+    // если сегодня воскресенье, но время уже прошло — на следующее воскресенье
+    if(delta === 0 && d.getTime() <= now.getTime()){
+      d.setDate(d.getDate() + 7);
+    }
+    const pad = (n)=>String(n).padStart(2,'0');
+    const iso = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    return iso;
+  }
+
+  // =====================
+  // ИНИЦИАЛИЗАЦИЯ ДАННЫХ В UI
+  // =====================
+  function hydrate(){
+    $('#year').textContent = new Date().getFullYear();
+
+    // Контакты
+    if(CONFIG.address){
+      $('#addressText').textContent = CONFIG.address;
+    }
+    if(CONFIG.phone){
+      $('#phoneText').textContent = CONFIG.phone;
+    }
+    if(CONFIG.email){
+      $('#emailText').textContent = CONFIG.email;
+    }
+
+    // Соцсети
+    if(CONFIG.instagram) $('#igLink').href = CONFIG.instagram;
+    if(CONFIG.youtube) $('#ytLink').href = CONFIG.youtube;
+    if(CONFIG.telegram) $('#tgLink').href = CONFIG.telegram;
+
+    // Онлайн
+    $('#ytLinkText').textContent = CONFIG.youtubeChannelOrStream || 'Ссылка не указана — добавьте в CONFIG.youtubeChannelOrStream';
+    $('#onlineLinkText').textContent = CONFIG.onlineStream || 'Ссылка не указана — добавьте в CONFIG.onlineStream';
+
+    // Донат
+    $('#donateLinkText').textContent = CONFIG.donateLink || 'Не указано — добавьте в CONFIG.donateLink';
+    $('#donateBankText').textContent = CONFIG.donateBankText || 'Не указано — добавьте в CONFIG.donateBankText';
+  }
+
+  // =====================
+  // ОБРАБОТЧИКИ
+  // =====================
+  function bind(){
+    // Онлайн
+    $('#btnOnline').addEventListener('click', () => {
+      openUrl(CONFIG.onlineStream || CONFIG.youtubeChannelOrStream);
+    });
+    $('#btnOpenYouTube').addEventListener('click', () => openUrl(CONFIG.youtubeChannelOrStream));
+    $('#btnOpenOnline').addEventListener('click', () => openUrl(CONFIG.onlineStream));
+
+    // Карта
+    const openMaps = () => openUrl(buildMapsUrl(CONFIG.mapsQuery));
+    $('#btnMaps').addEventListener('click', openMaps);
+    $('#btnMaps2').addEventListener('click', openMaps);
+
+    // Копирование
+    const copyAddress = () => copyToClipboard(CONFIG.address || '');
+    $('#btnCopyAddress').addEventListener('click', copyAddress);
+    $('#btnCopyAddress2').addEventListener('click', copyAddress);
+
+    $('#btnCopyContact').addEventListener('click', async () => {
+      const lines = [
+        `${CONFIG.churchName}`,
+        `${CONFIG.address || ''}`,
+        `${CONFIG.phone ? 'Телефон: '+CONFIG.phone : ''}`,
+        `${CONFIG.email ? 'Email: '+CONFIG.email : ''}`,
+        `${CONFIG.telegram ? 'Telegram: '+CONFIG.telegram : ''}`,
+        `${CONFIG.instagram ? 'Instagram: '+CONFIG.instagram : ''}`,
+        `${CONFIG.youtube ? 'YouTube: '+CONFIG.youtube : ''}`
+      ].filter(Boolean).join('
+');
+      await copyToClipboard(lines);
+    });
+
+    // Поделиться
+    $('#btnShare').addEventListener('click', async () => {
+      const text = `${CONFIG.churchName} — богослужения каждое воскресенье: 11:00 (рус), 14:00 (каз). Адрес: ${CONFIG.address}.`;
+      if(navigator.share){
+        try{ await navigator.share({title: CONFIG.churchName, text}); }
+        catch(e){ await copyToClipboard(text); }
+      } else {
+        await copyToClipboard(text);
+      }
+    });
+
+    // Напоминание (ICS)
+    $('#btnReminder').addEventListener('click', () => {
+      // По умолчанию создаём событие на следующее воскресенье в 11:00
+      const startISO = nextSundayAt(11, 0);
+      const ics = makeIcsEvent({
+        title: `${CONFIG.churchName} — богослужение (рус)`,
+        startLocalISO: startISO,
+        durationMinutes: 110,
+        description: 'Добро пожаловать на богослужение. Вход свободный. Если не можете прийти — смотрите онлайн.',
+        location: CONFIG.address
+      });
+      downloadFile('almaty-church-service.ics', ics, 'text/calendar');
+      showToast('Файл напоминания скачан (.ics)');
+    });
+
+    // Контактные кнопки
+    $('#btnCall').addEventListener('click', () => {
+      if(!CONFIG.phone){ showToast('Телефон не указан'); return; }
+      window.location.href = `tel:${CONFIG.phone}`;
+    });
+
+    $('#btnMessage').addEventListener('click', () => {
+      // Приоритет: Telegram, потом Email
+      if(CONFIG.telegram){ openUrl(CONFIG.telegram); return; }
+      if(CONFIG.email){ window.location.href = `mailto:${CONFIG.email}?subject=${encodeURIComponent('Almaty Church — вопрос')}`; return; }
+      showToast('Контакты не указаны');
+    });
+
+    // Проповеди
+    $('#btnSermons').addEventListener('click', () => openUrl(CONFIG.sermonsPlaylist || CONFIG.youtubeChannelOrStream));
+
+    // Пожертвования
+    $('#btnDonate').addEventListener('click', () => openUrl(CONFIG.donateLink));
+    $('#btnCopyDonate').addEventListener('click', () => {
+      const t = (CONFIG.donateBankText || CONFIG.donateLink || '').trim();
+      if(!t){ showToast('Реквизиты не указаны'); return; }
+      copyToClipboard(t);
+    });
+
+    // Форма молитвенной просьбы
+    $('#prayerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = $('#name').value.trim();
+      const phone = $('#phone').value.trim();
+      const req = $('#request').value.trim();
+
+      if(!req){
+        showToast('Напишите просьбу');
+        return;
+      }
+
+      // По умолчанию — копируем в буфер и предлагаем отправить куда удобно.
+      const payload = [
+        `Молитвенная просьба (${CONFIG.churchName})`,
+        name ? `Имя: ${name}` : 'Имя: (не указано)',
+        phone ? `Контакт: ${phone}` : 'Контакт: (не указан)',
+        '',
+        req
+      ].join('
+');
+
+      await copyToClipboard(payload);
+      showToast('Просьба скопирована. Отправьте в Telegram/Email');
+
+      // Авто-открытие Telegram/Email (если указано)
+      if(CONFIG.telegram){
+        openUrl(CONFIG.telegram);
+      } else if(CONFIG.email){
+        const subject = encodeURIComponent('Молитвенная просьба');
+        const body = encodeURIComponent(payload);
+        window.location.href = `mailto:${CONFIG.email}?subject=${subject}&body=${body}`;
+      }
+
+      e.target.reset();
+    });
+
+    $('#btnPrayerEmail').addEventListener('click', () => {
+      if(!CONFIG.email){ showToast('Email не указан'); return; }
+      const subject = encodeURIComponent('Молитвенная просьба');
+      window.location.href = `mailto:${CONFIG.email}?subject=${subject}`;
+    });
+  }
+
+  hydrate();
+  bind();
+</script>
+
+</body>
+</html>
